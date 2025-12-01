@@ -262,4 +262,4 @@ This document describes the Data Flow Diagram for the Airbnb Clone backend syste
 
 The visual Data Flow Diagram created in Draw.io can be found as `data-flow.png` in this directory.
 
-_Note: Create the PNG diagram using Draw.io and export it to this directory._
+![alt text](data-flow-1.png)
