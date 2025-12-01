@@ -1,6 +1,7 @@
 # Flowcharts - Airbnb Clone Backend
 
 ## Overview
+
 This directory contains flowcharts that visualize the step-by-step processes for key backend operations in the Airbnb Clone system.
 
 ---
@@ -249,7 +250,9 @@ This flowchart illustrates the complete booking process from property search to 
 ---
 
 ## Diagram Files
+
 The visual flowcharts created in Draw.io should be stored in this directory:
+
 - `data-flow-diagram.png` - Main booking process flowchart
 
-*Note: Create the PNG diagrams using Draw.io and export them to this directory.*
+_Note: Create the PNG diagrams using Draw.io and export them to this directory._
