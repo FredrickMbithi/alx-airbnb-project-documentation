@@ -1,6 +1,7 @@
 # Backend Requirement Specifications - Airbnb Clone
 
 ## Overview
+
 This document outlines the detailed technical and functional requirements for the key backend features of the Airbnb Clone application.
 
 ---
@@ -8,25 +9,27 @@ This document outlines the detailed technical and functional requirements for th
 ## 1. User Authentication
 
 ### 1.1 Description
+
 The User Authentication system handles user registration, login, logout, and session management using JWT tokens.
 
 ### 1.2 API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register a new user |
-| POST | `/api/auth/login` | Authenticate user and return JWT |
-| POST | `/api/auth/logout` | Invalidate user session |
-| POST | `/api/auth/refresh` | Refresh JWT token |
-| POST | `/api/auth/forgot-password` | Initiate password reset |
-| POST | `/api/auth/reset-password` | Reset password with token |
-| GET | `/api/auth/verify-email/:token` | Verify email address |
+| Method | Endpoint                        | Description                      |
+| ------ | ------------------------------- | -------------------------------- |
+| POST   | `/api/auth/register`            | Register a new user              |
+| POST   | `/api/auth/login`               | Authenticate user and return JWT |
+| POST   | `/api/auth/logout`              | Invalidate user session          |
+| POST   | `/api/auth/refresh`             | Refresh JWT token                |
+| POST   | `/api/auth/forgot-password`     | Initiate password reset          |
+| POST   | `/api/auth/reset-password`      | Reset password with token        |
+| GET    | `/api/auth/verify-email/:token` | Verify email address             |
 
 ### 1.3 Input/Output Specifications
 
 #### POST /api/auth/register
 
 **Request Body:**
+
 ```json
 {
   "email": "user@example.com",
@@ -38,6 +41,7 @@ The User Authentication system handles user registration, login, logout, and ses
 ```
 
 **Success Response (201 Created):**
+
 ```json
 {
   "status": "success",
@@ -53,6 +57,7 @@ The User Authentication system handles user registration, login, logout, and ses
 ```
 
 **Error Response (400 Bad Request):**
+
 ```json
 {
   "status": "error",
@@ -69,6 +74,7 @@ The User Authentication system handles user registration, login, logout, and ses
 #### POST /api/auth/login
 
 **Request Body:**
+
 ```json
 {
   "email": "user@example.com",
@@ -77,6 +83,7 @@ The User Authentication system handles user registration, login, logout, and ses
 ```
 
 **Success Response (200 OK):**
+
 ```json
 {
   "status": "success",
@@ -97,15 +104,16 @@ The User Authentication system handles user registration, login, logout, and ses
 
 ### 1.4 Validation Rules
 
-| Field | Rules |
-|-------|-------|
-| email | Required, valid email format, unique |
-| password | Required, min 8 characters, must contain uppercase, lowercase, number, special character |
-| first_name | Required, min 2 characters, max 50 characters, letters only |
-| last_name | Required, min 2 characters, max 50 characters, letters only |
-| phone_number | Optional, valid international phone format |
+| Field        | Rules                                                                                    |
+| ------------ | ---------------------------------------------------------------------------------------- |
+| email        | Required, valid email format, unique                                                     |
+| password     | Required, min 8 characters, must contain uppercase, lowercase, number, special character |
+| first_name   | Required, min 2 characters, max 50 characters, letters only                              |
+| last_name    | Required, min 2 characters, max 50 characters, letters only                              |
+| phone_number | Optional, valid international phone format                                               |
 
 ### 1.5 Performance Criteria
+
 - Registration response time: < 500ms
 - Login response time: < 300ms
 - JWT token expiration: 1 hour (access), 7 days (refresh)
@@ -114,6 +122,7 @@ The User Authentication system handles user registration, login, logout, and ses
 - Email verification link expiration: 24 hours
 
 ### 1.6 Security Requirements
+
 - Passwords must be hashed using bcrypt
 - JWT tokens must be signed with RS256 algorithm
 - HTTPS required for all authentication endpoints
@@ -125,32 +134,35 @@ The User Authentication system handles user registration, login, logout, and ses
 ## 2. Property Management
 
 ### 2.1 Description
+
 The Property Management system enables hosts to create, update, and manage their property listings.
 
 ### 2.2 API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/properties` | Create a new property listing |
-| GET | `/api/properties` | List all properties with filters |
-| GET | `/api/properties/:id` | Get property details |
-| PUT | `/api/properties/:id` | Update property |
-| DELETE | `/api/properties/:id` | Delete property |
-| POST | `/api/properties/:id/images` | Upload property images |
-| DELETE | `/api/properties/:id/images/:imageId` | Delete property image |
-| PUT | `/api/properties/:id/availability` | Update availability |
+| Method | Endpoint                              | Description                      |
+| ------ | ------------------------------------- | -------------------------------- |
+| POST   | `/api/properties`                     | Create a new property listing    |
+| GET    | `/api/properties`                     | List all properties with filters |
+| GET    | `/api/properties/:id`                 | Get property details             |
+| PUT    | `/api/properties/:id`                 | Update property                  |
+| DELETE | `/api/properties/:id`                 | Delete property                  |
+| POST   | `/api/properties/:id/images`          | Upload property images           |
+| DELETE | `/api/properties/:id/images/:imageId` | Delete property image            |
+| PUT    | `/api/properties/:id/availability`    | Update availability              |
 
 ### 2.3 Input/Output Specifications
 
 #### POST /api/properties
 
 **Request Headers:**
+
 ```
 Authorization: Bearer <access_token>
 Content-Type: application/json
 ```
 
 **Request Body:**
+
 ```json
 {
   "title": "Cozy Downtown Apartment",
@@ -163,9 +175,9 @@ Content-Type: application/json
     "country": "USA",
     "zip_code": "10001",
     "latitude": 40.7128,
-    "longitude": -74.0060
+    "longitude": -74.006
   },
-  "price_per_night": 150.00,
+  "price_per_night": 150.0,
   "currency": "USD",
   "max_guests": 4,
   "bedrooms": 2,
@@ -177,6 +189,7 @@ Content-Type: application/json
 ```
 
 **Success Response (201 Created):**
+
 ```json
 {
   "status": "success",
@@ -193,10 +206,10 @@ Content-Type: application/json
       "zip_code": "10001",
       "coordinates": {
         "latitude": 40.7128,
-        "longitude": -74.0060
+        "longitude": -74.006
       }
     },
-    "price_per_night": 150.00,
+    "price_per_night": 150.0,
     "currency": "USD",
     "max_guests": 4,
     "bedrooms": 2,
@@ -219,6 +232,7 @@ Content-Type: application/json
 #### GET /api/properties
 
 **Query Parameters:**
+
 ```
 ?location=New York
 &check_in=2025-12-15
@@ -235,6 +249,7 @@ Content-Type: application/json
 ```
 
 **Success Response (200 OK):**
+
 ```json
 {
   "status": "success",
@@ -248,7 +263,7 @@ Content-Type: application/json
           "city": "New York",
           "country": "USA"
         },
-        "price_per_night": 150.00,
+        "price_per_night": 150.0,
         "currency": "USD",
         "rating": 4.8,
         "review_count": 45,
@@ -268,24 +283,25 @@ Content-Type: application/json
 
 ### 2.4 Validation Rules
 
-| Field | Rules |
-|-------|-------|
-| title | Required, min 10 characters, max 100 characters |
-| description | Required, min 50 characters, max 5000 characters |
-| property_type | Required, enum: apartment, house, villa, condo, cabin, cottage |
-| location.address | Required, max 200 characters |
-| location.city | Required, max 100 characters |
-| location.country | Required, valid country name |
-| location.latitude | Required, valid latitude (-90 to 90) |
-| location.longitude | Required, valid longitude (-180 to 180) |
-| price_per_night | Required, positive number, min 1 |
-| max_guests | Required, integer, min 1, max 16 |
-| bedrooms | Required, integer, min 0, max 10 |
-| bathrooms | Required, integer, min 1, max 10 |
-| amenities | Array of valid amenity strings |
-| cancellation_policy | Required, enum: flexible, moderate, strict |
+| Field               | Rules                                                          |
+| ------------------- | -------------------------------------------------------------- |
+| title               | Required, min 10 characters, max 100 characters                |
+| description         | Required, min 50 characters, max 5000 characters               |
+| property_type       | Required, enum: apartment, house, villa, condo, cabin, cottage |
+| location.address    | Required, max 200 characters                                   |
+| location.city       | Required, max 100 characters                                   |
+| location.country    | Required, valid country name                                   |
+| location.latitude   | Required, valid latitude (-90 to 90)                           |
+| location.longitude  | Required, valid longitude (-180 to 180)                        |
+| price_per_night     | Required, positive number, min 1                               |
+| max_guests          | Required, integer, min 1, max 16                               |
+| bedrooms            | Required, integer, min 0, max 10                               |
+| bathrooms           | Required, integer, min 1, max 10                               |
+| amenities           | Array of valid amenity strings                                 |
+| cancellation_policy | Required, enum: flexible, moderate, strict                     |
 
 ### 2.5 Performance Criteria
+
 - Property creation: < 1s
 - Property search: < 500ms for up to 10,000 properties
 - Image upload: < 5s per image
@@ -295,6 +311,7 @@ Content-Type: application/json
 - Search results pagination: 20 items per page (configurable)
 
 ### 2.6 Authorization Rules
+
 - Only authenticated users can create listings
 - Only property owner can update/delete their listings
 - Admins can manage any listing
@@ -306,32 +323,35 @@ Content-Type: application/json
 ## 3. Booking System
 
 ### 3.1 Description
+
 The Booking System manages reservations, availability, and booking status for properties.
 
 ### 3.2 API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/bookings` | Create a new booking |
-| GET | `/api/bookings` | List user's bookings |
-| GET | `/api/bookings/:id` | Get booking details |
-| PUT | `/api/bookings/:id` | Update booking |
-| DELETE | `/api/bookings/:id/cancel` | Cancel booking |
-| GET | `/api/properties/:id/availability` | Check property availability |
-| POST | `/api/bookings/:id/confirm` | Host confirms booking |
-| POST | `/api/bookings/:id/decline` | Host declines booking |
+| Method | Endpoint                           | Description                 |
+| ------ | ---------------------------------- | --------------------------- |
+| POST   | `/api/bookings`                    | Create a new booking        |
+| GET    | `/api/bookings`                    | List user's bookings        |
+| GET    | `/api/bookings/:id`                | Get booking details         |
+| PUT    | `/api/bookings/:id`                | Update booking              |
+| DELETE | `/api/bookings/:id/cancel`         | Cancel booking              |
+| GET    | `/api/properties/:id/availability` | Check property availability |
+| POST   | `/api/bookings/:id/confirm`        | Host confirms booking       |
+| POST   | `/api/bookings/:id/decline`        | Host declines booking       |
 
 ### 3.3 Input/Output Specifications
 
 #### POST /api/bookings
 
 **Request Headers:**
+
 ```
 Authorization: Bearer <access_token>
 Content-Type: application/json
 ```
 
 **Request Body:**
+
 ```json
 {
   "property_id": "uuid-string",
@@ -347,6 +367,7 @@ Content-Type: application/json
 ```
 
 **Success Response (201 Created):**
+
 ```json
 {
   "status": "success",
@@ -381,12 +402,12 @@ Content-Type: application/json
       "total": 3
     },
     "pricing": {
-      "price_per_night": 150.00,
-      "nights_total": 750.00,
-      "cleaning_fee": 50.00,
-      "service_fee": 80.00,
-      "taxes": 66.00,
-      "total": 946.00,
+      "price_per_night": 150.0,
+      "nights_total": 750.0,
+      "cleaning_fee": 50.0,
+      "service_fee": 80.0,
+      "taxes": 66.0,
+      "total": 946.0,
       "currency": "USD"
     },
     "status": "pending",
@@ -401,12 +422,14 @@ Content-Type: application/json
 #### GET /api/properties/:id/availability
 
 **Query Parameters:**
+
 ```
 ?start_date=2025-12-01
 &end_date=2025-12-31
 ```
 
 **Success Response (200 OK):**
+
 ```json
 {
   "status": "success",
@@ -416,12 +439,12 @@ Content-Type: application/json
       {
         "date": "2025-12-01",
         "available": true,
-        "price": 150.00
+        "price": 150.0
       },
       {
         "date": "2025-12-02",
         "available": true,
-        "price": 150.00
+        "price": 150.0
       },
       {
         "date": "2025-12-15",
@@ -437,19 +460,20 @@ Content-Type: application/json
 
 ### 3.4 Validation Rules
 
-| Field | Rules |
-|-------|-------|
-| property_id | Required, valid property UUID, property must exist |
-| check_in | Required, valid date, must be today or future |
-| check_out | Required, valid date, must be after check_in |
-| guests.adults | Required, integer, min 1 |
-| guests.children | Optional, integer, min 0 |
-| guests.infants | Optional, integer, min 0 |
-| Total guests | Must not exceed property max_guests |
-| Stay duration | Must be within min/max stay limits |
-| special_requests | Optional, max 500 characters |
+| Field            | Rules                                              |
+| ---------------- | -------------------------------------------------- |
+| property_id      | Required, valid property UUID, property must exist |
+| check_in         | Required, valid date, must be today or future      |
+| check_out        | Required, valid date, must be after check_in       |
+| guests.adults    | Required, integer, min 1                           |
+| guests.children  | Optional, integer, min 0                           |
+| guests.infants   | Optional, integer, min 0                           |
+| Total guests     | Must not exceed property max_guests                |
+| Stay duration    | Must be within min/max stay limits                 |
+| special_requests | Optional, max 500 characters                       |
 
 ### 3.5 Booking Status Flow
+
 ```
 pending → confirmed → active → completed
 pending → cancelled
@@ -458,6 +482,7 @@ confirmed → cancelled
 ```
 
 ### 3.6 Performance Criteria
+
 - Booking creation: < 500ms
 - Availability check: < 200ms
 - Concurrent booking prevention: Optimistic locking
@@ -465,6 +490,7 @@ confirmed → cancelled
 - Calendar sync latency: < 30 seconds
 
 ### 3.7 Business Rules
+
 - Users cannot book their own properties
 - Double booking prevention with database-level constraints
 - Cancellation refund based on policy:
@@ -479,25 +505,27 @@ confirmed → cancelled
 ## 4. Payment System
 
 ### 4.1 Description
+
 The Payment System handles payment processing, refunds, and host payouts using Stripe integration.
 
 ### 4.2 API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/payments/intent` | Create payment intent |
-| POST | `/api/payments/confirm` | Confirm payment |
-| GET | `/api/payments/:id` | Get payment details |
-| POST | `/api/payments/:id/refund` | Process refund |
-| GET | `/api/payments/history` | Get payment history |
-| POST | `/api/payouts/setup` | Setup payout method |
-| GET | `/api/payouts` | Get payout history |
+| Method | Endpoint                   | Description           |
+| ------ | -------------------------- | --------------------- |
+| POST   | `/api/payments/intent`     | Create payment intent |
+| POST   | `/api/payments/confirm`    | Confirm payment       |
+| GET    | `/api/payments/:id`        | Get payment details   |
+| POST   | `/api/payments/:id/refund` | Process refund        |
+| GET    | `/api/payments/history`    | Get payment history   |
+| POST   | `/api/payouts/setup`       | Setup payout method   |
+| GET    | `/api/payouts`             | Get payout history    |
 
 ### 4.3 Input/Output Specifications
 
 #### POST /api/payments/intent
 
 **Request Body:**
+
 ```json
 {
   "booking_id": "uuid-string"
@@ -505,6 +533,7 @@ The Payment System handles payment processing, refunds, and host payouts using S
 ```
 
 **Success Response (200 OK):**
+
 ```json
 {
   "status": "success",
@@ -520,19 +549,21 @@ The Payment System handles payment processing, refunds, and host payouts using S
 
 ### 4.4 Validation Rules
 
-| Field | Rules |
-|-------|-------|
-| booking_id | Required, valid booking UUID, booking must be in pending status |
-| payment_method | Valid Stripe payment method ID |
-| Refund amount | Cannot exceed original payment amount |
+| Field          | Rules                                                           |
+| -------------- | --------------------------------------------------------------- |
+| booking_id     | Required, valid booking UUID, booking must be in pending status |
+| payment_method | Valid Stripe payment method ID                                  |
+| Refund amount  | Cannot exceed original payment amount                           |
 
 ### 4.5 Performance Criteria
+
 - Payment intent creation: < 2s
 - Payment confirmation: < 5s
 - Refund processing: < 10s
 - Payout processing: 1-3 business days
 
 ### 4.6 Security Requirements
+
 - PCI DSS compliance
 - Sensitive data never stored on server
 - All payment data handled by Stripe
@@ -543,12 +574,14 @@ The Payment System handles payment processing, refunds, and host payouts using S
 ## Non-Functional Requirements
 
 ### Performance
+
 - API response time: p95 < 500ms
 - Database query time: p95 < 100ms
 - Concurrent users: Support 10,000 concurrent users
 - Uptime: 99.9% availability
 
 ### Security
+
 - All endpoints use HTTPS
 - JWT token-based authentication
 - Input sanitization to prevent SQL injection
@@ -557,12 +590,14 @@ The Payment System handles payment processing, refunds, and host payouts using S
 - Rate limiting: 100 requests per minute per user
 
 ### Scalability
+
 - Horizontal scaling support
 - Database connection pooling
 - Redis caching for frequently accessed data
 - CDN for static assets
 
 ### Monitoring
+
 - Request/response logging
 - Error tracking and alerting
 - Performance metrics collection
@@ -573,6 +608,7 @@ The Payment System handles payment processing, refunds, and host payouts using S
 ## API Response Format
 
 ### Success Response
+
 ```json
 {
   "status": "success",
@@ -585,6 +621,7 @@ The Payment System handles payment processing, refunds, and host payouts using S
 ```
 
 ### Error Response
+
 ```json
 {
   "status": "error",
@@ -604,15 +641,16 @@ The Payment System handles payment processing, refunds, and host payouts using S
 ```
 
 ### HTTP Status Codes
-| Code | Description |
-|------|-------------|
-| 200 | OK - Request successful |
-| 201 | Created - Resource created |
-| 400 | Bad Request - Invalid input |
-| 401 | Unauthorized - Authentication required |
-| 403 | Forbidden - Insufficient permissions |
-| 404 | Not Found - Resource not found |
-| 409 | Conflict - Resource conflict (e.g., double booking) |
-| 422 | Unprocessable Entity - Validation error |
-| 429 | Too Many Requests - Rate limit exceeded |
-| 500 | Internal Server Error - Server error |
+
+| Code | Description                                         |
+| ---- | --------------------------------------------------- |
+| 200  | OK - Request successful                             |
+| 201  | Created - Resource created                          |
+| 400  | Bad Request - Invalid input                         |
+| 401  | Unauthorized - Authentication required              |
+| 403  | Forbidden - Insufficient permissions                |
+| 404  | Not Found - Resource not found                      |
+| 409  | Conflict - Resource conflict (e.g., double booking) |
+| 422  | Unprocessable Entity - Validation error             |
+| 429  | Too Many Requests - Rate limit exceeded             |
+| 500  | Internal Server Error - Server error                |
