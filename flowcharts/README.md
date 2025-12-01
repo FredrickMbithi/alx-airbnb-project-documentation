@@ -255,4 +255,4 @@ The visual flowcharts created in Draw.io should be stored in this directory:
 
 - `data-flow-diagram.png` - Main booking process flowchart
 
-_Note: Create the PNG diagrams using Draw.io and export them to this directory._
+![alt text](image.png)
