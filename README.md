@@ -2,11 +2,11 @@
 
 Comprehensive project documentation for an Airbnb clone application including requirements analysis, system design, use cases, data flow diagrams, and flowcharts.
 
-## 📚 Overview
+## Overview
 
 This repository contains complete project documentation for building an Airbnb-style property rental platform. It includes technical specifications, user stories, database design, and system architecture documentation created as part of the ALX Software Engineering program.
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 alx-airbnb-project-documentation/
@@ -24,7 +24,7 @@ alx-airbnb-project-documentation/
     └── README.md                      # Feature specifications
 ```
 
-## 🎯 Project Scope
+## Project Scope
 
 This documentation covers a full-featured property rental platform with:
 
@@ -65,7 +65,7 @@ This documentation covers a full-featured property rental platform with:
    - Analytics and reporting
    - Content moderation
 
-## 📋 Requirements Documentation
+## Requirements Documentation
 
 ### Backend API Specifications (`requirements.md`)
 
@@ -108,7 +108,7 @@ Detailed technical specs including:
 
 **Full specifications:** See `requirements.md` (657 lines)
 
-## 📊 Use Case Diagrams
+## Use Case Diagrams
 
 ### Actors
 
@@ -129,7 +129,7 @@ Detailed technical specs including:
 
 **Full details:** See `use-case-diagram/README.md` (11KB)
 
-## 🔄 Data Flow Diagrams
+## Data Flow Diagrams
 
 Visualizes data movement through the system:
 
@@ -249,7 +249,7 @@ As an admin, I want to:
 
 **Full details:** See `features-and-functionalities/README.md` (4KB)
 
-## 🛠️ Technology Stack (Recommended)
+## Technology Stack (Recommended)
 
 ### Backend
 - **Framework:** Django 4.x / Node.js (Express)
@@ -272,7 +272,7 @@ As an admin, I want to:
 - **Hosting:** AWS / Heroku
 - **Monitoring:** Sentry
 
-## 📖 How to Use This Documentation
+## How to Use This Documentation
 
 ### For Developers
 
@@ -293,7 +293,7 @@ As an admin, I want to:
 2. **Follow Flowcharts** — Create user experience flows
 3. **Review User Stories** — Ensure designs meet user needs
 
-## 🎓 ALX Project Context
+## ALX Project Context
 
 This documentation was created as part of the **ALX Software Engineering Program** to demonstrate:
 
@@ -303,7 +303,7 @@ This documentation was created as part of the **ALX Software Engineering Program
 - UML diagram creation
 - Agile user story writing
 
-## 📝 Documentation Standards
+## Documentation Standards
 
 All documentation follows:
 
@@ -312,16 +312,16 @@ All documentation follows:
 - **Agile** user story format (As a [role], I want [feature], so that [benefit])
 - **Markdown** formatting for readability
 
-## 🔄 Related Repositories
+## Related Repositories
 
 - [alx-airbnb-database](https://github.com/FredrickMbithi/alx-airbnb-database) — Database schema and SQL scripts
 - [alx-backend-*](https://github.com/FredrickMbithi/) — Backend implementation repos
 
-## 📄 License
+## License
 
 Educational project - MIT License
 
-## 👤 Author
+## Author
 
 Fredrick Mbithi  
 ALX Software Engineering Student
